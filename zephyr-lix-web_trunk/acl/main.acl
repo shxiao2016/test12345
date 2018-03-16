@@ -1,0 +1,2 @@
+owners: [ snli, xinwang2, ypan ]
+paths: ['.*']

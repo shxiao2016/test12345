@@ -1,0 +1,28 @@
+apply plugin: 'li-python-deployable'
+
+// See http://go/pygradle for general information on PyGradle.
+
+python {
+    // See http://go/python-faq for configuration.
+    details.pythonVersion = '2.7'
+    pythonEnvironment << [
+        'CPPFLAGS': '-I/export/apps/openssl/include',
+        'LDFLAGS': '-L/export/apps/openssl/lib -Wl,-rpath,/export/apps/openssl/lib'
+    ]
+}
+
+dependencies {
+    python spec.external.Flask
+
+    python spec.product.'apollo'.'apollo'
+    python spec.product.'lipy-gunicorn'.'lipy-gunicorn'
+    python spec.product.'lipy-web'.'lipy-web'
+
+    python spec.external.'Flask-SQLAlchemy'
+    python spec.external.'APScheduler'
+    python spec.external.'PyMySQL'
+    python spec.external.'Flask-JSGlue'
+
+
+    // test spec.external.mock
+}

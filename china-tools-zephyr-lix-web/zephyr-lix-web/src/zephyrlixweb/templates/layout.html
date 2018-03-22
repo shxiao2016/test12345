@@ -1,0 +1,53 @@
+{% set nav = {
+  'project_title': 'Zephyr LiX Dashboard',
+  'project': 'zephyr-lix-web',
+  'items': [],
+  'login': True,
+  'inversion': True,
+  'bootstrap': '3.3',
+} %}
+
+{% extends "tools/layout-bs3.html" %}
+{% set use_container_fluid = True %}
+
+{% block title %}Zephyr LiX Status Dashboard{% endblock %}
+
+{% block nav_menu %}
+    {{ nav_item('Zephyr Lix Tracking', url_for('zephyr_lix_tracking')) }}
+    {{ nav_item('Voyager Newly Introduced', url_for('voyager_newly_introduced')) }}
+    {{ nav_item('Voyager Ramp Status Change', url_for('ramp_status_change')) }}
+    {{ nav_item('My Watch List', url_for('my_watch_list')) }}
+    {{ super() }}
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <script type="text/javascript" language="javascript"
+            src="{{ url_for('static', filename = 'jquery-3.1.1.min.js') }}"></script>
+    <script type="text/javascript" language="javascript"
+            src="{{ url_for('static', filename = 'jquery.dataTables.min.js') }}"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-3.3.7-dist/css/bootstrap.min.css') }}"
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-3.3.7-dist/css/bootstrap-theme.min.css') }}"
+          crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="{{ url_for('static', filename='bootstrap-3.3.7-dist/js/bootstrap.min.js') }}"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <script type="text/javascript" language="javascript"
+            src="{{ url_for('static', filename = 'table_actions.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='jquery.dataTables.min.css') }}" crossorigin="anonymous">
+
+    <script type="text/javascript" language="javascript"
+            src="{{ url_for('static', filename = 'jsecure.min-0.0.74.js') }}"></script>
+{% endblock %}
+
+{% block footer %}
+<footer class="pull-right"> {{ super() }} </footer>
+{% endblock %}

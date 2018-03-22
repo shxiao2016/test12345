@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block head %}
+    {{ super() }}
+    <script type="text/javascript" language="javascript"
+            src="{{ url_for('static', filename = 'moment.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 10px">
+            <div class="col-sm-12 main">
+                <div class="panel with-nav-tabs panel-default">
+                    <div class="panel-body">
+                        <div class="tab-pane fade in active">
+                            <table id="total_lix_statistic_table_platform" class="table">
+                                <caption style="text-align: left">LiXes Usage Summary of Each Platform</caption>
+                                <thead>
+                                <tr>
+                                    <th rowspan="2">Platform</th>
+                                    <td rowspan="2" style="border-left: solid 1px #000"></td>
+                                    <th rowspan="2">Total LiXes Count</th>
+                                    <th rowspan="2">Zephyr LiXes Count</th>
+                                    <th colspan="4" style="border-left: solid 1px #000;text-align: center">Qualified to be cleaned up Zephyr LiXes Count</th>
+                                </tr>
+                                <tr>
+                                    <td style="border-left: solid 1px #000"></td>
+                                    <th>Total Count</th>
+                                    <th>Ramped Qualified Count</th>
+                                    <th>Non-Ramped Qualified Count</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for platform, platform_info in platform_statistic.iteritems() %}
+                                    <tr>
+                                        <td>{{ platform }}</td>
+                                        <td style="border-left: solid 1px #000"></td>
+                                        <td>{{platform_info.subtotal}}</td>
+                                        <td>{{platform_info.zephyr_lix_count}}</td>
+                                        <td style="border-left: solid 1px #000"></td>
+                                        <td>{{platform_info.outliers}}</td>
+                                        <td>{{platform_info.ramped_outliers}}</td>
+                                        <td>{{platform_info.non_ramped_outliers}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                     <div class="tab-pane fade in active">
+                            <table id="total_lix_statistic_table_pillar" class="table">
+                                <caption style="text-align: left">LiXes Usage Summary of Each Pillar</caption>
+                                <thead>
+                                <tr>
+                                    <th rowspan="2">Pillar</th>
+                                    <td rowspan="2" style="border-left: solid 1px #000"></td>
+                                    <th rowspan="2">Total LiXes Count</th>
+                                    <th rowspan="2">Zephyr LiXes Count</th>
+                                    <th colspan="4" style="border-left: solid 1px #000;text-align: center">Qualified to be cleaned up Zephyr LiXes Count</th>
+                                </tr>
+                                <tr>
+                                    <td style="border-left: solid 1px #000"></td>
+                                    <th>Total Count</th>
+                                    <th>Ramped Qualified Count</th>
+                                    <th>Non-Ramped Qualified Count</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {% for pillar, pillar_info in pillar_statistic.iteritems() %}
+                                    <tr>
+                                        <td>{{ pillar }}</td>
+                                        <td style="border-left: solid 1px #000"></td>
+                                        <td>{{pillar_info.subtotal}}</td>
+                                        <td>{{pillar_info.zephyr_lix_count}}</td>
+                                        <td style="border-left: solid 1px #000"></td>
+                                        <td>{{pillar_info.outliers}}</td>
+                                        <td>{{pillar_info.ramped_outliers}}</td>
+                                        <td>{{pillar_info.non_ramped_outliers}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    </script>
+{% endblock %}

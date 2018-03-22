@@ -1,0 +1,114 @@
+{
+  "name": "zephyr-lix-web",
+  "group": "com.linkedin.@spec.name@",
+  "version": "0.1.*",
+  "scmUrl": "ssh://git@gitli.corp.linkedin.com/china-tools/zephyr-lix-web.git",
+  "comment": "",
+  "description": "This is a lix tool which will collect lix information on zephyr",
+  "watchers": [],
+  "build": {
+    "commands": {
+      "build": "ligradle -Prelease=true -PallArtifacts build",
+      "precommit": "ligradle flake8",
+      "snapshot": "ligradle -Psnapshot=true build",
+      "test": "echo 'testing done by build command'"
+    },
+    "toolchains": {
+      "gradle": {
+        "version": "4.*",
+        "plugins": {
+          "gradle-python": {
+            "libraries": [
+              "gradle-python"
+            ],
+            "version": "2.*"
+          }
+        }
+      }
+    },
+    "type": "gradle",
+    "versions": {
+      "java": "1.8.0_121"
+    }
+  },
+  "runtime": {},
+  "review": {},
+  "topology": {
+    "applications": {
+      "zephyr-lix-web": {
+        "kind": "generic",
+        "meta": {
+          "features": [
+            "cfg2",
+            "python"
+          ],
+          "force_kill_delay": 5
+        },
+        "name": "zephyr-lix-web",
+        "payloads": [
+          {
+            "name": "zephyr-lix-web"
+          }
+        ]
+      }
+    }
+  },
+  "archive": {
+    "artifacts": {},
+    "databases": {},
+    "repo_name": "pypi-internal"
+  },
+  "dependencyResolution": {},
+  "external": {
+    "Flask": "pypi:Flask:0.12",
+    "APScheduler": "pypi:APScheduler:3.0.5",
+    "Flask-SQLAlchemy": "pypi:Flask-SQLAlchemy:2.1",
+    "Flask-JSGlue": "pypi:Flask-JSGlue:0.3.1",
+    "Gevent": "pypi:gevent:1.2.1",
+    "PyMySQL": "pypi:PyMySQL:0.7.2"
+  },
+  "product": {
+    "apollo": {
+      "libraries": [
+        "apollo"
+      ],
+      "version": "8.*"
+    },
+    "lipy-gunicorn": {
+      "libraries": [
+        "lipy-gunicorn"
+      ],
+      "version": "2.*"
+    },
+    "lipy-web": {
+      "libraries": [
+        "lipy-web"
+      ],
+      "version": "11.*"
+    },
+    "lipy-flask-sqlalchemy": {
+      "libraries": [
+        "lipy-flask-sqlalchemy"
+      ],
+      "version": "4.*"
+    },
+    "lipy-config-base": {
+      "libraries": [
+        "lipy-config-base"
+      ],
+      "version": "8.*"
+    },
+    "iris-client": {
+      "libraries": [
+        "iris-client"
+      ],
+      "version": "1.0.*"
+    }
+  },
+  "trunkDev": {
+    "autoRevert": false
+  },
+  "extSCM": {
+    "config": "svn+ssh://svn.corp.linkedin.com/netrepo/zephyr-lix-web/config"
+  }
+}
